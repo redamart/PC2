@@ -14,6 +14,10 @@ public:
 		for (int i = 0; i < 1; i++) {
 			circulos[i]->dibujar(g);
 			circulos[i]->mover();
+			circulos[i]->cambio();
+			
+			
+			
 		};
 	}
 };

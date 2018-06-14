@@ -16,12 +16,13 @@ namespace trianguloycircuos {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	private:
-		CControl ^ control = gcnew CControl;
+		CControl ^ control;
 	public:
 		MyForm(void)
 		{
 			InitializeComponent();
 			//
+			control = gcnew CControl;
 			//TODO: Add the constructor code here
 			//
 		}
@@ -37,12 +38,15 @@ namespace trianguloycircuos {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Timer^  timer1;
+	protected:
+	private: System::ComponentModel::IContainer^  components;
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -51,12 +55,35 @@ namespace trianguloycircuos {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"MyForm";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->components = (gcnew System::ComponentModel::Container());
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->SuspendLayout();
+			// 
+			// timer1
+			// 
+			this->timer1->Enabled = true;
+			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
+			// 
+			// MyForm
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(484, 461);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Name = L"MyForm";
+			this->Text = L"Soyunafiguraxdxdxd";
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
+	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
+		Graphics^ g;
+		
+		g = this->CreateGraphics();
+		g->Clear(Color::White);
+		control->dibujarc(g);
+		delete g;
+	}
 	};
 }

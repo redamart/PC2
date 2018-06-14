@@ -10,16 +10,17 @@ private:
 	int rad;
 	int color;
 	int vel;
-	bool cambio;
+	bool cam;
 public:
 	CCirculo() {
 		Random r;
 		color = 1;
 		rad = r.Next(5, 50);
-		posX = r.Next(0, 2 * rad);
-		posY = r.Next(0, 2 * rad);
-		vel = r.Next(1,20);
-		cambio = false;
+		posX = r.Next(0, 500- (2 * rad));
+		posY = r.Next(0, 500-(2 * rad));
+		vel = 20;
+		//r.Next(1, 20)
+		cam = false;
 
 	}
 	void dibujar(Graphics^ g) {
@@ -27,19 +28,19 @@ public:
 
 	}
 	void mover() {
-		if (cambio == false) {
-			posX += vel;
+		if (cam == false) {
+			posX = posX + vel;
 		}
 		else {
-			posX -=  vel;
+			posX = posX- vel;
 		}
 	}
 	void cambio() {
-		if (posX > 2 * rad) {
-			cambio = true;
+		if (posX >( 500 - (2 * rad))) {
+			cam= true;
 		}
 		if (posX <= 0) {
-			cambio = false;
+			cam= false;
 		}
 	}
 };
