@@ -17,12 +17,14 @@ namespace trianguloycircuos {
 	{
 	private:
 		CControl ^ control;
+		int n;
 	public:
 		MyForm(void)
 		{
 			InitializeComponent();
 			//
 			control = gcnew CControl;
+			n = 0;
 			//TODO: Add the constructor code here
 			//
 		}
@@ -62,7 +64,6 @@ namespace trianguloycircuos {
 			// 
 			// timer1
 			// 
-			this->timer1->Enabled = true;
 			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
 			// 
 			// MyForm
@@ -73,6 +74,7 @@ namespace trianguloycircuos {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"MyForm";
 			this->Text = L"Soyunafiguraxdxdxd";
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->ResumeLayout(false);
 
 		}
@@ -84,6 +86,12 @@ namespace trianguloycircuos {
 		g->Clear(Color::White);
 		control->dibujarc(g);
 		delete g;
+	}
+	private: System::Void MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
+		if (e->KeyCode == Keys::C) {
+			control->agregarC();
+			timer1->Enabled = true;
+		}
 	}
 	};
 }
